@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="dist/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body>
     <h1>Woow!</h1>
+    <form onsubmit="register(event)">
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="password" placeholder="password">
+        <button type="submit">Register</button>
+    </form>
+    <form onsubmit="login(event)">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <button type="submit">Login</button>
+    </form>
+    <button onclick='getAdminPanel()'>Admin Psanel</button>
+    <script>
+        async function login(ev) {
+            ev.preventDefault();
+            let {username, password} = ev.target.elements;
+            username = username.value;
+            password = password.value;
+
+            const data = await axios.post('/user/login', {username, password});
+            console.log(data)
+        }
+
+       
+
+        async function register(ev) {
+            ev.preventDefault();
+            let {username, password} = ev.target.elements;
+            username = username.value;
+            password = password.value;
+            const data = await axios.post('/user/register', {username, password});
+            console.log(data)
+        }
+
+        async function getAdminPanel(ev) {
+           
+            const data = await axios.get('/user/adminPanel');
+            console.log(data)
+        }
+
+    
+    </script>
 </body>
+
 </html>
