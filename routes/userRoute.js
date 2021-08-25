@@ -3,8 +3,10 @@ exports.__esModule = true;
 var assert_1 = require("assert");
 var express = require('express');
 var router = express.Router();
+var app = express();
 //controler
 var _a = require('../controlers/userContrl'), login = _a.login, register = _a.register, adminPanel = _a.adminPanel;
+app.use(isAdmin);
 router
     .post('/login', login)
     .post('/register', register)
@@ -18,6 +20,7 @@ function isAdmin(req, res, next) {
     }
     catch (e) {
         console.error(e);
+        res.send({ error: e });
     }
     next();
 }

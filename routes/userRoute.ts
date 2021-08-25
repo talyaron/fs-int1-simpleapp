@@ -2,9 +2,11 @@ import { ok } from "assert";
 
 const express = require('express')
 const router = express.Router();
-
+const app = express();
 //controler
-const { login, register, adminPanel } = require('../controlers/userContrl')
+const { login, register, adminPanel } = require('../controlers/userContrl');
+
+app.use(isAdmin);
 
 router
     .post('/login', login)
@@ -21,7 +23,8 @@ function isAdmin(req, res, next) {
     //else respond with an error
     }catch(e){
         console.error(e)
+        res.send({error:e});
     }
-    next()
+    next();
 }
 module.exports = router;

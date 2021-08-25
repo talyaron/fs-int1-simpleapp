@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 app.use(express.json());
+var secert = process.env.SECRET;
+console.log(secert);
 app.use(express.static('public'));
 app.use(express.static('public/dist'));
 //routes
