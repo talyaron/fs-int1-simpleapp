@@ -6,8 +6,6 @@ var port = process.env.PORT || 3000;
 app.use(express.json());
 var secert = process.env.SECRET || '123';
 console.log(secert);
-var adminCode = process.env.ADMIN_CODE || '123';
-console.log('admin code:', adminCode);
 app.use(express.static('public'));
 app.use(express.static('public/dist'));
 //routes

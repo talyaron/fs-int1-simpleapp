@@ -9,9 +9,6 @@ app.use(express.json());
 const secert:string = process.env.SECRET ||'123';
 console.log(secert);
 
-const adminCode:string = process.env.ADMIN_CODE || '123';
-console.log('admin code:', adminCode);
-
 app.use(express.static('public'));
 app.use(express.static('public/dist'));
 
